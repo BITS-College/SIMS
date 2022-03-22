@@ -3,6 +3,6 @@ $DatabaseType = 'mysqli';
 $DatabaseServer = 'localhost'; 
 $DatabaseUsername = 'root'; 
 $DatabasePassword = 'root'; 
-$DatabaseName = 'os-new'; 
+$DatabaseName = 'oss'; 
 $DatabasePort = '3306'; 
 ?>

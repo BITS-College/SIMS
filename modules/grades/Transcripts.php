@@ -41,6 +41,8 @@ s.first_name
 , s.last_name
 , s.middle_name
 , s.alt_id
+, e.syear
+, csj.title
 , s.gender as gender
 , s.birthdate as birthdate
 , s.phone as student_phone
@@ -61,6 +63,7 @@ from students s
 inner join student_enrollment e on e.student_id=s.student_id and (e.start_date <= e.end_date or e.end_date is null) and e.syear = ' . $tsyear . '
 inner join school_gradelevels sg on sg.id=e.grade_id
 inner join schools sch on sch.id=e.school_id
+inner join course_subjects csj on csj.school_id=e.school_id
 left join student_address a on (a.student_id=s.student_id and a.type=\'Home Address\')
 where  s.student_id = ';
 $creditquery = 'SELECT divisor AS credit_attempted,credit_earned AS credit_earned
@@ -333,11 +336,15 @@ if ($_REQUEST['modfunc'] == 'save') {
 <div class="row c-row">
   <div class="column"><p style="font-size: 18px;">Student name: <?php echo $sinfo['FIRST_NAME'] . ' ' . $sinfo['LAST_NAME'] ?></p></div>
   <div class="column"><p style="font-size: 18px;">Student ID: <?php echo $sinfo['ALT_ID'] ?></p></div>
-  <div class="column"><p style="font-size: 18px;">Program Type: ____________________</p></div>
+<?php
+  $tt = $sinfo['TITLE'];
+$prog = explode('-', $tt, 2);
+?>
+  <div class="column"><p style="font-size: 18px;">Program Type: <?php echo $prog[0]; ?> </p></div>
   <div class="column"><p style="font-size: 18px;">Class Year: <?php echo $sinfo['GRADE_SHORT']; ?></p></div>
-  <div class="column"><p style="font-size: 18px;">Program: ____________________</p></div>
+  <div class="column"><p style="font-size: 18px;">Program: <?php echo $prog[1]; ?></p></div>
   <div class="column"><p style="font-size: 18px;">Program Mode: ____________________</p></div>
-  <div class="column"><p style="font-size: 18px;">Academic Year: ____________________</p></div>
+  <div class="column"><p style="font-size: 18px;">Academic Year: <?php echo $sinfo['SYEAR']; ?></p></div>
   <div class="column"><p style="font-size: 18px;">Semester: <?php echo $gradelevel;?></p></div>
 </div>
 
