@@ -232,7 +232,7 @@ if ($_REQUEST['modfunc'] == 'save') {
            }
                         $course_html[$colnum] .= '<tr>';
                         $course_html[$colnum] .= '<td>' . $trec['COURSE_NAME'] . '</td>';
-                        $course_html[$colnum] .= '<td>' . $trec[' '] . '</td>';
+                        $course_html[$colnum] .= '<td>' . $trec['COURSE_SHORT_NAME'] . '</td>';
                         $course_html[$colnum] .= '<td>' . sprintf("%01.2f", $trec['CREDIT_ATTEMPTED']) . '</td>';
                         $course_html[$colnum] .= '<td class="bg-grey f-s-16 text-center"><b>' . $gradeletter . '</b></td>';
                         $course_html[$colnum] .= '<td>' . sprintf("%01.2f", $QP_value) . '</td>';
@@ -335,17 +335,36 @@ if ($_REQUEST['modfunc'] == 'save') {
 
 <div class="row c-row">
   <div class="column"><p style="font-size: 18px;">Student name: <?php echo $sinfo['FIRST_NAME'] . ' ' . $sinfo['LAST_NAME'] ?></p></div>
-  <div class="column"><p style="font-size: 18px;">Student ID: <?php echo $sinfo['ALT_ID'] ?></p></div>
+  <div class="column"><p style="font-size: 18px;">Student ID: <?php 
+  
+  $alt = $sinfo['ALT_ID'] ;
+  echo wordwrap($alt , 3 , '/' , true )
+  
+  
+  ?></p></div>
 <?php
   $tt = $sinfo['TITLE'];
 $prog = explode('-', $tt, 2);
 ?>
-  <div class="column"><p style="font-size: 18px;">Program Type: <?php echo $prog[0]; ?> </p></div>
-  <div class="column"><p style="font-size: 18px;">Class Year: <?php echo $sinfo['GRADE_SHORT']; ?></p></div>
+  <div class="column"><p style="font-size: 18px;">Program Type: <?php
+  
+  
+ 
+  if($prog[0] == "UG "){
+      echo("Undergraduate");
+  }
+
+  else {
+      echo("Postgraduate");
+  }
+  
+  
+  
+  ?> </p></div>
+ 
   <div class="column"><p style="font-size: 18px;">Program: <?php echo $prog[1]; ?></p></div>
-  <div class="column"><p style="font-size: 18px;">Program Mode: ____________________</p></div>
   <div class="column"><p style="font-size: 18px;">Academic Year: <?php echo $sinfo['SYEAR']; ?></p></div>
-  <div class="column"><p style="font-size: 18px;">Semester: <?php echo $gradelevel;?></p></div>
+  <div class="column"><p style="font-size: 18px;">Class: <?php echo $gradelevel;?></p></div>
 </div>
 
 
