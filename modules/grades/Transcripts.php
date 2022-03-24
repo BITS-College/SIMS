@@ -450,7 +450,7 @@ $prog = explode('-', $tt, 2);
   <div class="column"><p style="font-size: 18px;"></p></div>
   <div class="column"><p style="font-size: 18px;">________To be Determined</p></div>
   
-  <div class="column"><p style="font-size: 18px;"><br><br>Remark:____________</p></div>
+  <div class="column"><p style="font-size: 18px;"><br><br>Remark:_____________</p></div>
   <div class="column"><p style="font-size: 18px;"><br><br><br><br><br></p></div>
   
   <div class="column"><p style="font-size: 18px;"><?php echo  $posted_arr[2] . '/' . $posted_arr[1] . '/' . $posted_arr[0];?><br>Date</p></div>
